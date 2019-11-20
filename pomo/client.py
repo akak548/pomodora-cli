@@ -1,38 +1,29 @@
-from . import Config
+import click
+from .config import Config
+from .session import Session
+import os
+
 
 class Client(object):
+
     def __init__(self):
 
-        self.config = Config()
-        
-    """
-    Start Pomodora Session
-    
-    Args:
-        - time: (int) Length of session in minutes
-        - task: (str) Task or goal of session
-
-    Return:
-        - bool: True if session is complete
-
-    Exception:
-        - 
-    """
-
-    def start_session(self):
+        self.app_dir = "{}/.config/pomo".format(os.environ['HOME'])
         pass
 
-    """
-    Initialize the pomo environment
-    """
-    def initialize(self):
-        pass
-    
-    """
-    Displays state of current session
+    def start(self):
+        """
+        Start Pomodora Session
+        """
+        try:
+            session = Session(self.app_dir)
+        except Exception as e:
+            click.echo("Error: ", e)
 
-    Return:
-        - str: <session_id>/<time left>
-    """
+        session.start()
+
     def status(self):
-
+        """
+        Displays state of current session
+        """
+        pass
