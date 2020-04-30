@@ -15,14 +15,10 @@ class Client(object):
         """
         Start Pomodora Session
         """
-        try:
-            session = Session(self.app_dir)
-        except Exception as e:
-            click.echo("Error: ", e)
-
+        session = Session(self.app_dir)
         session.start()
 
-    def status(self):
+    def check(self):
         """
         Displays state of current session
         """
